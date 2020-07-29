@@ -1,0 +1,93 @@
+package cardDealer;
+
+import java.io.*; 
+import java.util.*;
+
+public class CardDealerMain 
+{
+	public static void main(String[] args) throws IOException
+	{
+		// declare CardNode object, array, Scanner object
+		CardNode deck = null;
+		CardNode[] hands = {null, null, null, null};
+		Scanner reader = new Scanner (new File ("cardData.dat"));
+
+		// create deck
+		for (int s = 4; s >= 1; s--)
+		{
+			for (int v = 13; v >= 1; v--)
+				if (deck != null)
+					deck = new CardNode(new CardClass(s,v), deck);
+				else
+					deck = new CardNode(new CardClass(s,v), null);
+		}
+		
+		// deal cards 
+		for (int i = 1; i <= 13; i++)
+		{
+			for (int j = 0; j <= 3; j++)
+			{
+				CardNode back = null;
+				CardNode temp = deck;
+				int randomVal;
+
+				// delete node and get value
+				randomVal = reader.nextInt();
+				System.out.println("\n" +randomVal); //TEST
+				for (int m = 1; m < randomVal; m++)
+				{
+					System.out.println(temp.getValue());
+					back = temp;
+					temp = temp.getNext();
+				}
+				if (back != null)
+					back.setNext(temp.getNext());
+
+				else
+					deck = deck.getNext();
+				
+				
+				
+				
+				// add to hand in increasing order
+				CardNode newNode = new CardNode (new CardClass (temp.getValue().getSuit(), temp.getValue().getValue()), null);
+				
+				if (hands [j] != null)
+				{
+					CardNode temp2 = hands[j];
+					CardNode back2 = null;
+					while (temp2 != null && newNode.getValue().compareTo(temp2.getValue()) == 1)
+					{
+						back2 = temp2;
+						temp2 = temp2.getNext();
+					}
+
+					if (back2 != null)
+					{	
+						back.setNext(newNode);
+						newNode.setNext(temp2);
+					}
+					else
+					{
+						newNode.setNext(hands[j]);
+						hands[j] = newNode;
+					}
+				}
+				else
+					hands [j] = newNode;
+			}
+		}
+
+		// print hands
+		System.out.println("Nicholas Kuo\n");
+		CardNode temp3 = deck;
+		for (int i = 1; i <= 4; i++)
+		{
+			for (int j = 1; j <= 13; j++)
+			{
+
+			}
+			System.out.println();
+		}
+	}
+}
