@@ -1,0 +1,33 @@
+package cardDealer;
+
+public class CardNode 
+{
+	private CardClass value;
+	private CardNode next;
+	
+	public CardNode (CardClass initValue, CardNode initNext)
+	{
+		value = initValue;
+		next = initNext;
+	}
+	
+	public void setValue (CardClass theNewValue)
+	{
+		value = theNewValue;
+	}
+	
+	public void setNext (CardNode theNewNext)
+	{
+		next = theNewNext;
+	}
+	
+	public CardClass getValue()
+	{
+		return value;
+	}
+	
+	public CardNode getNext()
+	{
+		return next;
+	}
+}
