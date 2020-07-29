@@ -1,0 +1,73 @@
+package cardDealer;
+
+public class CardClass implements Comparable
+{
+	// declare private variables
+	private int suit;
+	private int value;
+
+	public CardClass (int s, int v)
+	{
+		suit = s;
+		value = v;
+	}
+
+	public int getSuit()
+	{
+		return suit;
+	}
+
+	public int getValue()
+	{
+		return value;
+	}
+
+	public String toString()
+	{
+		String cardValue;
+		switch(value)
+		{
+		case 1:
+			cardValue = "Ace";
+			break;
+		case 11:
+			cardValue = "Jack";
+			break;
+		case 12:
+			cardValue = "Queen";
+			break;
+		case 13:
+			cardValue = "King";
+			break;
+		default:
+			cardValue = "" + value;
+			break;
+		}
+
+		switch(suit)
+		{
+		case 1:
+			return (cardValue + " of Diamonds");
+		case 2:
+			return (cardValue + " of Clubs");
+		case 3:
+			return (cardValue + " of Hearts");
+		default:
+			return (cardValue + " of Spades");
+		}
+	}
+	public int compareTo (Object other)
+	{
+		CardClass otherCard = (CardClass) other; 
+		if(suit < otherCard.getSuit())
+			return -1;
+		else if (suit > otherCard.getSuit())
+			return 1;
+		else if (value < otherCard.getValue())
+			return -1;
+		else if (value > otherCard.getValue())
+			return 1;
+		else
+			return 0;
+	}
+}
