@@ -1,9 +1,9 @@
-package cardDealer;
+package cardDealing;
 
-import java.io.*; 
+import java.io.*;  
 import java.util.*;
 
-public class CardDealerMain 
+public class CardDealing 
 {
 	public static void main(String[] args) throws IOException
 	{
@@ -91,3 +91,4 @@ public class CardDealerMain
 		}
 	}
 }
+
